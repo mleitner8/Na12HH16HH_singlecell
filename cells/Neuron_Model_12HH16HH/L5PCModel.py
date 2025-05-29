@@ -6,6 +6,7 @@ Created on Sat Oct 16 21:07:44 2021
 """
 
 import numpy as np
+import vm_plotter
 from neuron import h
 h.load_file("runModel.hoc")
 def init_settings(nav12=1,

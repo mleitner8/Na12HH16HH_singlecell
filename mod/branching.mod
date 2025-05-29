@@ -64,7 +64,7 @@ ENDVERBATIM
 FUNCTION SetA(x,a) {
 VERBATIM {
 #if defined(t)
-		NrnThread* _nt = nrn_threads;
+	NrnThread* _nt = nrn_threads;
 #endif
 Section* sec;
 	Node* nd;
