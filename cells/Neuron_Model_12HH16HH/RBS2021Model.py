@@ -5,7 +5,8 @@ Created on Sat Oct 16 21:07:44 2021
 @author: bensr
 """
 
-from cells.vm_plotter import *
+import numpy as np
+from vm_plotter import *
 from neuron import h
 import json
 from scipy.signal import find_peaks
