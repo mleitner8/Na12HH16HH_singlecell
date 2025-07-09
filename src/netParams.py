@@ -7,6 +7,7 @@ High-level specifications for M1 network model using NetPyNE
 
 from netpyne import specs
 from cfg import cfg
+import csv, json, pickle
 
 cfg.update()
 #try:
@@ -29,7 +30,7 @@ netParams = specs.NetParams() # Object class NetParams to store network paramete
 #------------------------------------------------------------------------------
 # Load cell rules previously saved using netpyne format
 #------------------------------------------------------------------------------
-loadCellParams = True
+loadCellParams = False
 saveCellParams = False
 
 if loadCellParams:
@@ -40,6 +41,33 @@ if loadCellParams:
 #------------------------------------------------------------------------------
 
 if not loadCellParams:
+
+    def csv_to_dict(filepath):
+        result = {}
+        with open(filepath, mode='r', newline='') as file:
+            reader = csv.DictReader(file)
+            fieldnames = reader.fieldnames
+            key_field = fieldnames[0]  # Use the first column as key
+            for row in reader:
+                key = row[key_field]
+                value = {k: v for k, v in row.items() if k != key_field}
+                result[key] = value
+        return result
+
+
+        # Load CSV with Mutant Params
+    if cfg.loadmutantParams == True:
+        print("Loading mutant params: ", cfg.variant)
+    else:
+        cfg.variant = 'WT'
+
+    variants = csv_to_dict('../cells/MutantParameters_updated_062725.csv')
+    sorted_variant = dict(sorted(variants[cfg.variant].items()))
+    for key, value in sorted_variant.items():
+        sorted_variant[key] = float(value)
+    with open('../cells/Neuron_Model_12HH16HH/params/na12annaTFHH2mut.txt', 'w') as f:
+        json.dump(sorted_variant, f)
+
     # import cell model from NEURON/Python code
     netParams.importCellParams('PT5B_full', '../cells/Neuron_Model_12HH16HH/Na12HH16HHModel_TF.py', 'Na12Model_TF' )
 
