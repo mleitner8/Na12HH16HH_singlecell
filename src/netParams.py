@@ -69,7 +69,7 @@ if not loadCellParams:
         json.dump(sorted_variant, f)
 
     # import cell model from NEURON/Python code
-    netParams.importCellParams('PT5B_full', '../cells/Neuron_Model_12HH16HH/Na12HH16HHModel_TF.py', 'Na12Model_TF' )
+    netParams.importCellParams('PT5B_full', '../cells/Neuron_Model_12HH16HH/Na12HH_Model_TF.py', 'Na12Model_TF' )
 
     # rename soma to conform to netpyne standard
     netParams.renameCellParamsSec(label='PT5B_full', oldSec='soma_0', newSec='soma')
