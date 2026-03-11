@@ -8,38 +8,44 @@ from currentscape.currentscape import plot_currentscape
 import pandas as pd
 import os
 import datetime
+import csv
 
 
 class Na12Model_TF:
-    def __init__(self,na12name = 'na12annaTFHH2',
-                mut_name= 'na12annaTFHH2mut',  ## Change this to 'na12_mut' if you want to make heterozygous mutant 
-                na12mechs = ['na12','na12mut'],
-                na16name = 'na16HH_TF2',
-                na16mut_name ='na16HH_TF2', 
-                na16mechs = ['na16','na16mut'], 
-                params_folder = '../cells/Neuron_Model_12HH16HH/params/',
-                plots_folder = './Plots/',
-                pfx='testprefix',
-                update = True, 
-                fac=None,
-                K=1, 
-                dend_nav12=1,
-                ## Parameters for New model 030425
-                ais_nav12_fac=5.76,
-                ais_nav16_fac=0.648,
-                nav12=1.21,
-                nav16=1.716, 
-                somaK=0.022, 
-                KP=3.9375, 
-                KT=5, 
-                ais_ca = 21.5,
-                ais_Kca = 0.25,
-                soma_na16=0.8,
-                soma_na12=2.56,
-                node_na = 1):
     
-        K = 1
-        node_na = 0.5      
+    def __init__(self,na12name = 'na12annaTFHH2',
+                 mut_name= 'na12annaTFHH2',  
+                 na12mechs = ['na12','na12mut'],
+                 na16name = 'na16HH_TF2',
+                 na16mut_name ='na16HH_TF2', 
+                 na16mechs = ['na16','na16'], 
+                 params_folder = './params/na12HMM_HOF_params/', ## na16name='na16_orig2',na16mechs = ['na16','na16mut'], na16mut_name='na16'
+                 
+                 ais_nav12_fac=5.184, 
+                 nav12=1.17975,
+                 soma_na12 = 2.9952,
+                 dend_nav12=1.9305,
+
+                 ais_nav16_fac=2.187,
+                 nav16=2.574,
+                 soma_na16=0.8,
+                 dend_nav16=3.3,
+
+                 somaK=2.2,
+                 KP=0.00590625,
+                 K=0.4,
+                 KT=0.00075,
+                 ais_ca = 21.5,
+                 ais_Kca = 0.5,
+                 node_na = 1,
+                 dend_K=0.025,
+                 plots_folder = './Plots/',pfx='testprefix', 
+                 update = True, fac=None,na12_scale=None): 
+        
+        
+        # K = 1 ##TF020624
+        # node_na = 0.5 #(0.5 good value, default following newAIS) #1#100#90#80#70#60#50#40#30#20 #10
+
            
 
         self.l5mdl = NeuronModel(nav12=nav12, nav16=nav16,axon_K = K,axon_Kp = KP,axon_Kt = KT,soma_K = somaK,
@@ -47,6 +53,8 @@ class Na12Model_TF:
                                  ais_nav16_fac=ais_nav16_fac,ais_nav12_fac=ais_nav12_fac, #TF 012524 added ais_nav16 to change in reference to ais_nav12
                                  ##TF030624 Args below added to add update_mech_from_dict functionality to NeuronModel class.
                                  dend_nav12=dend_nav12,
+                                 dend_nav16=dend_nav16,
+                                 dend_K=dend_K,
                                  update = update, ##Change to false if you don't want to update mechs
                                  na12name = na12name,
                                  na12mut_name = mut_name,
@@ -55,12 +63,16 @@ class Na12Model_TF:
                                  na16mut_name = na16mut_name,
                                  na16mechs = na16mechs,
                                  params_folder=params_folder,
+                                 fac=fac,
+                                 na12_scale=na12_scale,
                                  ) 
         
         self.plot_folder = plots_folder 
         self.plot_folder = f'{plots_folder}'
         Path(self.plot_folder).mkdir(parents=True, exist_ok=True)
         self.pfx = pfx
+    
+    
 
 
     
@@ -118,7 +130,13 @@ class Na12Model_TF:
         step2 = int((time2/dt))
         Vmsteplist = Vm[step1:step2] #assign new list for range selected between two steps
         # maxvm = max(Vm[step1:step2]) #gets max voltage
-        # indexmax = Vmsteplist.argmax() 
+        # indexmax = Vmsteplist.argmax() #gets index (time point in Vmsteplist) where max voltage is
+        #####***
+
+        # print(I)
+        # print([x for x in I.keys()])
+        # print([x for x in ionic.keys()])
+        #current_names = sim_config['currents']
         plot_config = {
             "output": {
                 "savefig": True,
@@ -135,7 +153,7 @@ class Na12Model_TF:
                     #"all_currents":True,
                     "currentscape": True},
 
-            "colormap": {"name":"colorbrewer.qualitative.Paired_10"},
+            "colormap": {"name":"colorbrewer.qualitative.Paired_12"},
             #"colormap": {"name":"cartocolors.qualitative.Prism_10"},
             #"colormap": {"name":"cmocean.diverging.Balance_10"},
             
@@ -161,18 +179,133 @@ class Na12Model_TF:
                 "bottom": 0.0
                 }
             }
-    
+        
+        # print(plot_config['current'])
+        # print('step at max value for vm')
+        # # print(Vmsteplist)
+        # print(f"the max voltage value is {maxvm}")        
         # print(f"The index at which the max voltage happens is {indexmax}")
         
         #fig = plot_currentscape(Vm, [I[x] for x in I.keys()], plot_config,[ionic[x] for x in ionic.keys()]) #Default version that plots full sweep_len (full simulation)
-        # fig = plot_currentscape(Vm[step1:step2], [I[x][step1:step2] for x in I.keys()], plot_config,[ionic[x][step1:step2] for x in ionic.keys()]) #Use this version to add time steps
+        fig = plot_currentscape(
+            Vm[step1:step2],
+            [I[x][step1:step2] for x in I.keys()],
+            plot_config,
+            [ionic[x][step1:step2] for x in ionic.keys()]
+        ) #Use this version to add time steps
+        try:
+            plt.close(fig)
+        except Exception:
+            pass
         #fig = plot_currentscape(Vm[step1:step2], [I[x][step1:step2] for x in I.keys()], plot_config) #112723 removing ionic currents at bottom
 
+
+    def make_currentscape_plot_dual_stim(self,
+                                        sweep_len,
+                                        dt,
+                                        soma_amp, soma_dur, soma_start,
+                                        dend_amp, dend_dur, dend_start,
+                                        dend_section_type, dend_section_index, dend_section_seg,
+                                        dend_shape='epsp', tau1=1.0, tau2=6.0,
+                                        time1=None, time2=None,
+                                        pfx=None,
+                                        sim_config=None):
+        """Currentscape for dual-stim protocols (e.g., Larkum panels b–e).
+
+        This configures the *same* soma + dend stimulation used by plot_dual_stim
+        (including EPSP-shaped dend current injection), then runs run_sim_model so
+        currents can be recorded at the requested sim_config segment.
+        """
+        if sim_config is None:
+            raise ValueError('sim_config must be provided for currentscape dual-stim')
+        if time1 is None:
+            time1 = 0
+        if time2 is None:
+            time2 = sweep_len
+
+        current_names = sim_config.get('current_names', sim_config.get('currents', []))
+
+        # Configure soma and dend stimuli (do not run the model yet).
+        self.l5mdl.init_stim(sweep_len=sweep_len, stim_start=soma_start, stim_dur=soma_dur, amp=soma_amp, dt=dt)
+
+        if dend_shape == 'epsp':
+            self.l5mdl.init_dend_epsp_stim(sweep_len=sweep_len, amp=dend_amp, stim_start=dend_start, dt=dt,
+                                           tau1=tau1, tau2=tau2,
+                                           section_type=dend_section_type, section_index=dend_section_index,
+                                           section_seg=dend_section_seg)
+        else:
+            self.l5mdl.init_stim_dend_youpicksection(sweep_len=sweep_len, amp=dend_amp, stim_dur=dend_dur,
+                                                     stim_start=dend_start, dt=dt,
+                                                     section_type=dend_section_type, section_index=dend_section_index,
+                                                     section_seg=dend_section_seg)
+
+        # Run simulation while recording currents specified in sim_config.
+        Vm, I, t, stim, ionic = self.l5mdl.run_sim_model(dt=dt, sim_config=sim_config)
+
+        step1 = int(time1 / dt)
+        step2 = int(time2 / dt)
+        step1 = max(0, min(step1, len(Vm)))
+        step2 = max(step1 + 1, min(step2, len(Vm)))
+
+        plot_config = {
+            "output": {
+                "savefig": True,
+                "dir": f"{self.plot_folder}",
+                "fname": f"{pfx}_dualstim_t1-{time1}t2-{time2}_swp{sweep_len}_soma{str(soma_amp).replace('.','p')}@{soma_start}_dend{str(dend_amp).replace('.','p')}@{dend_start}",
+                "extension": "pdf",
+                "dpi": 600,
+                "transparent": False
+            },
+            "show": {
+                "currentscape": True
+            },
+            "colormap": {"name": "colorbrewer.qualitative.Paired_12"},
+            "xaxis": {"xticks": [25, 50, 75], "gridline_width": 0.2},
+            "current": {
+                "names": current_names,
+                "reorder": False,
+            },
+            "ions": {"names": ["ca", "k", "na"], "reorder": False},
+            "voltage": {"ylim": [-90, 50]},
+            "legendtextsize": 5,
+            "adjust": {
+                "left": 0.15,
+                "right": 0.8,
+                "top": 1.0,
+                "bottom": 0.0
+            }
+        }
+
+        fig = plot_currentscape(
+            Vm[step1:step2],
+            [I[x][step1:step2] for x in I.keys()],
+            plot_config,
+            [ionic[x][step1:step2] for x in ionic.keys()]
+        )
+        try:
+            plt.close(fig)
+        except Exception:
+            pass
+
+   
+
+        
+        ###### Writing all raw data to csv
+        # with open("./Plots/12HH16HMM_TF/111423/Currentscape/Na16_WT_1na_75ms_rawdata.csv",'w',newline ='') as csvfile:
+        #     writer = csv.writer(csvfile, delimiter = ',')
+        #     #writer.writerow(current_names)
+        #     writer.writerow(I.keys())
+            
+        #     writer.writerows(I[x] for x in I) # This and line below for writing data from entire sweep_len
+        #     writer.writerow(Vm)
+            
+            # writer.writerows(I[x][step1:step2] for x in I) ####This and below line are used when time steps are used
+            # writer.writerow(Vm[step1:step2])
         
         
     #__________added this function to get overexp and ttx to work   
     def make_mut(self,mut_mech,p_fn_na12_mech): 
-        #print(f'updating mut {mut_mech} with {p_fn_na12_mech}')
+        print(f'updating mut {mut_mech} with {p_fn_na12_mech}')
         self.na12_pmech = update_mech_from_dict(self.l5mdl, p_fn_na12_mech, self.mut_mech)
     #______________________________________________________________#
 
@@ -188,7 +321,7 @@ class Na12Model_TF:
             Vm, I, t, stim,extra_vms = self.l5mdl.run_model(dt=dt,rec_extra = rec_extra)
             self.extra_vms = extra_vms
         else:
-            Vm, I, t, stim = self.l5mdl.run_model(dt=dt)
+            Vm, I, t, stim,_ = self.l5mdl.run_model(dt=dt)
             
         self.volt_soma = Vm
         self.I = I
@@ -202,9 +335,108 @@ class Na12Model_TF:
         axs.locator_params(axis='y', nbins=8)
         #plt.show()
         #add_scalebar(axs)
-        # file_path_to_save=f'{self.plot_folder}{plot_fn}.pdf'
+        file_path_to_save=f'{self.plot_folder}{plot_fn}.pdf'
         # plt.savefig(file_path_to_save, format='pdf') ##TF031424 removed to avoid duplicates since plotting dvdt_from_volts as well.
         return ap_t, Vm
+
+    def plot_dual_stim(self, soma_amp=0.3, soma_dur=100, soma_start=30,
+                       dend_amp=0.5, dend_dur=100, dend_start=35,
+                       dend_section_type='dend', dend_section_index=0, dend_section_seg=0.5,
+                       dend2_section_type=None, dend2_section_index=None, dend2_section_seg=0.5,
+                       dt=0.02, clr='black', plot_fn='dual_step', axs=None, rec_extra=False, sweep_len=500,
+                       dend_shape='epsp', tau1=1.0, tau2=6.0,
+                       volt_ylim=None): # Default taus similar to typical, increase tau2 if "cutting off"
+        """
+        Plots the response to dual stimulation (somatic + dendritic).
+        """
+        self.dt = dt
+        
+        # If no axs provided, create 2 subplots (Voltage top, Current bottom)
+        if not axs:
+            fig, axs = plt.subplots(2, 1, figsize=(cm_to_in(8), cm_to_in(12)), sharex=True)
+            ax_volt = axs[0]
+            ax_stim = axs[1]
+        else:
+             # Assume user passed valid axes if provided (single or list?)
+             # Check if it is iterable (list, tuple, ndarray)
+             if isinstance(axs, (list, tuple)) or hasattr(axs, 'flat'):
+                 # It's a collection of axes
+                 if hasattr(axs, 'flat'):
+                     # Numpy array
+                     flat = axs.flat
+                     ax_volt = flat[0]
+                     ax_stim = flat[1] if len(flat) > 1 else None
+                 else:
+                     # List/Tuple
+                     ax_volt = axs[0]
+                     ax_stim = axs[1] if len(axs) > 1 else None
+             else:
+                 # Single axis
+                 ax_volt = axs
+                 ax_stim = None # Fallback
+            
+        # Run the dual stimulation model
+        if rec_extra:
+            Vm, I, t, stim, extra_vms, dend_Vm, dend2_Vm, dend_stim_trace = self.l5mdl.init_dual_stim_and_run(
+                sweep_len=sweep_len, dt=dt,
+                soma_amp=soma_amp, soma_dur=soma_dur, soma_start=soma_start,
+                dend_amp=dend_amp, dend_dur=dend_dur, dend_start=dend_start,
+                dend_section_type=dend_section_type, dend_section_index=dend_section_index, dend_section_seg=dend_section_seg,
+                dend2_section_type=dend2_section_type, dend2_section_index=dend2_section_index, dend2_section_seg=dend2_section_seg,
+                rec_extra=rec_extra, dend_shape=dend_shape, tau1=tau1, tau2=tau2
+            )
+            self.extra_vms = extra_vms
+        else:
+            Vm, I, t, stim, dend_Vm, dend2_Vm, dend_stim_trace = self.l5mdl.init_dual_stim_and_run(
+                sweep_len=sweep_len, dt=dt,
+                soma_amp=soma_amp, soma_dur=soma_dur, soma_start=soma_start,
+                dend_amp=dend_amp, dend_dur=dend_dur, dend_start=dend_start,
+                dend_section_type=dend_section_type, dend_section_index=dend_section_index, dend_section_seg=dend_section_seg,
+                dend2_section_type=dend2_section_type, dend2_section_index=dend2_section_index, dend2_section_seg=dend2_section_seg,
+                rec_extra=rec_extra, dend_shape=dend_shape, tau1=tau1, tau2=tau2
+            )
+
+        self.volt_soma = Vm
+        self.I = I
+        self.t = t
+        self.stim = stim
+
+        ap_t = (t / dt) * 1000  # Get timesteps
+
+        # Plot Voltages
+        ax_volt.plot(t, Vm, label='Soma', color=clr, linewidth=0.5)
+        ax_volt.plot(t, dend_Vm, label='Dend (Red)', color='red', linewidth=0.5)#, linestyle='--')
+        if dend2_Vm is not None:
+             ax_volt.plot(t, dend2_Vm, label='Dend2 (Blue)', color='blue', linewidth=0.5)
+        
+        ax_volt.set_ylabel('Voltage (mV)')
+        ax_volt.locator_params(axis='y', nbins=8)
+        if volt_ylim is not None:
+            ax_volt.set_ylim(volt_ylim)
+        ax_volt.legend(fontsize=6)
+        
+        # Plot Currents (Stims)
+        if ax_stim:
+            ax_stim.plot(t, stim, label='Soma Stim', color='black', linewidth=1.0)
+            ax_stim.plot(t, dend_stim_trace, label='Dend Stim', color='red', linewidth=1.0)
+            ax_stim.set_ylabel('Current (nA)', fontsize=7) # Reduced fontsize
+            ax_stim.set_xlabel('Time (ms)', fontsize=8)
+            ax_stim.tick_params(axis='both', which='major', labelsize=7)
+            ax_stim.legend(fontsize=5)
+            # Enforce consistent Y-axis for Larkum plots (approx -0.1 to 2.5 nA covers the range)
+            ax_stim.set_ylim(-0.1, 2.0) 
+            ax_stim.locator_params(axis='y', nbins=3)
+
+
+        
+        file_path_to_save = f'{self.plot_folder}/{plot_fn}.pdf'
+        # IMPORTANT: save the figure associated with the provided axes.
+        # Using pyplot's global savefig can accidentally save the most-recently-created
+        # figure (e.g., a currentscape) instead of the Larkum voltage figure.
+        fig_to_save = ax_volt.figure
+        fig_to_save.tight_layout()
+        fig_to_save.savefig(file_path_to_save, format='pdf')
+        return ap_t, Vm, dend_Vm, dend2_Vm
     
     #Plot both WT and mut on same stim plot
     def plot_wtvmut_stim(self,wt_Vm,wt_t,
@@ -234,26 +466,37 @@ class Na12Model_TF:
         vlength = len(Vm)
         tlength = len(t)
 
-        #print(f'tlength is {tlength}')
-        #print(f'vlength is {vlength}')
+        print(f'tlength is {tlength}')
+        print(f'vlength is {vlength}')
 
-        axs.plot(t,Vm, label='Vm', color=clr,linewidth=0.5)
-        axs.plot(wt_t[0:tlength],wt_Vm[0:vlength], label='WT_Vm', color='black',linewidth=0.5, alpha=0.8)
+        
+        axs.plot(wt_t[0:tlength],wt_Vm[0:vlength], label='WT', color='black',linewidth=0.5, alpha=0.8)
         if het_Vm is not None and het_t is not None:
-            axs.plot(het_t[0:tlength],het_Vm[0:vlength], label='HET_Vm', color='cadetblue',linewidth=0.5, alpha=0.8)
+            axs.plot(het_t[0:tlength],het_Vm[0:vlength], label='Heterozygous', color='cadetblue',linewidth=0.5, alpha=0.8)
+            axs.plot(t,Vm, label='Homozygous', color=clr,linewidth=0.5)
+        else:
+            axs.plot(t,Vm, label='Mutant', color=clr,linewidth=0.5)
 
         axs.locator_params(axis='x', nbins=5)
         axs.locator_params(axis='y', nbins=8)
+        axs.set_title('Stimulation Plot', fontsize = 8)
+        axs.set_xlabel('Time (s)', fontsize = 8)
+        axs.set_ylabel('Membrane Voltage', fontsize = 8)
+        axs.legend(loc='best', fontsize = 6, markerscale = 2)
+
         #plt.show()
         #add_scalebar(axs)
         # file_path_to_save=f'{self.plot_folder}{plot_fn}.pdf' ##Commented 121323 prior to batch run TF
         # plt.savefig(file_path_to_save, format='pdf')
+        
+        
+        
         return
     
     
     
     #Function for getting raw data from WT to superimpose under mut plots
-    def get_stim_raw_data(self,stim_amp = 0.5,dt=0.005,rec_extra=False,stim_dur=500,sim_config = {
+    def get_stim_raw_data(self,stim_amp = 0.5,dt=0.005,rec_extra=False,stim_dur=1600,sim_config = {
         #changing to get different firing at different points along neuron TF 011624
                 # 'section' : 'axon',
                 # 'section_num' : 0,
@@ -283,6 +526,60 @@ class Na12Model_TF:
         return Vm, I, t, stim #, ap_initiation
     
     
+    
+    def get_stim_raw_data_segments(self, stim_amp=0.5, dt=0.005, rec_extra=False, stim_dur=1600, sim_config=None):
+        """
+        Records voltage at multiple sections/segments specified in sim_config.
+        sim_config should have keys 'section', 'section_num', and 'segment', each as a list.
+        Returns: Vm_array (time x segment), I, t, stim
+
+        Example call:
+            sim_config = {
+            'section': ['axon', 'axon', 'soma'],
+            'section_num': [0, 1, 0],
+            'segment': [0.1, 0.5, 0.9]
+            }
+            Vm_array, I, t, stim = simwt.get_stim_raw_data_segments(stim_amp=0.5, dt=0.005, stim_dur=500, sim_config=sim_config)
+        """
+        if sim_config is None:
+            raise ValueError("sim_config must be provided and contain lists for 'section', 'section_num', and 'segment'.")
+
+        sections = sim_config.get('section', [])
+        section_nums = sim_config.get('section_num', [])
+        segments = sim_config.get('segment', [])
+        if not (isinstance(sections, list) and isinstance(section_nums, list) and isinstance(segments, list)):
+            raise ValueError("'section', 'section_num', and 'segment' in sim_config must be lists.")
+
+        self.dt = dt
+        self.l5mdl.init_stim(stim_dur=stim_dur, amp=stim_amp)
+
+        t_vec = h.Vector()
+        t_vec.record(h._ref_t)
+
+        seg_refs = []
+        for sec_name, sec_num, seg_x in zip(sections, section_nums, segments):
+            try:
+                sec = getattr(self.l5mdl.h.cell, sec_name)[sec_num]
+            except Exception as e:
+                print(f"Could not access section {sec_name}[{sec_num}]: {e}")
+                continue
+            seg = sec(seg_x)
+            seg_refs.append(seg)
+
+        volt_vecs = [h.Vector().record(seg._ref_v) for seg in seg_refs]
+
+        h.finitialize(-65)
+        h.continuerun(stim_dur)
+
+        t = np.array(t_vec)
+        Vm_array = np.array([np.array(v) for v in volt_vecs]).T  # shape: time x segment
+
+        # For compatibility, run the original sim for I, stim
+        Vm, I, t_orig, stim = self.get_stim_raw_data(stim_amp=stim_amp, dt=dt, rec_extra=rec_extra, stim_dur=stim_dur, sim_config=sim_config)
+
+        return Vm_array, I, t, stim
+    
+
     def plot_stim_firstpeak(self,stim_amp = 0.5,dt = 0.02,clr = 'black',plot_fn = 'step',axs = None,rec_extra = False,stim_start = 30, stim_dur = 500):
         self.dt = dt
         if not axs:
@@ -304,8 +601,8 @@ class Na12Model_TF:
         axs.locator_params(axis='y', nbins=8)
         #plt.show()
         #add_scalebar(axs)
-        # file_path_to_save=f'{self.plot_folder}{plot_fn}.pdf'
-        # plt.savefig(file_path_to_save, format='pdf')
+        file_path_to_save=f'{self.plot_folder}{plot_fn}.pdf'
+        plt.savefig(file_path_to_save, format='pdf')
         return axs
         
             
@@ -323,7 +620,7 @@ class Na12Model_TF:
         axs[3].plot(t,I['Ca'],label = 'Ca',color = 'green')
         #add_scalebar(axs)
         file_path_to_save=f'{self.plot_folder}Ktrials2_{plot_fn}.pdf'
-        # plt.savefig(file_path_to_save+'.pdf', format='pdf', dpi=my_dpi)
+        plt.savefig(file_path_to_save+'.pdf', format='pdf', dpi=my_dpi)
         return axs
     
     def get_axonal_ks(self, start_Vm = -72, dt= 0.1,rec_extra = False):
@@ -392,7 +689,7 @@ class Na12Model_TF:
         #add_scalebar(axs)
         #file_path_to_save=plot_fn
         file_path_to_save=plot_fn
-        # plt.savefig(file_path_to_save, format='pdf', dpi=my_dpi)
+        plt.savefig(file_path_to_save, format='pdf', dpi=my_dpi)
         return axs
         
     def plot_fi_curve(self,start,end,nruns,wt_data = None,ax1 = None, fig = None,fn = 'ficurve'): #start=0,end=0.6,nruns=14
@@ -416,16 +713,28 @@ class Na12Model_TF:
         soma_spikes = get_spike_times(self.volt_soma,self.t)
         axon_spikes = get_spike_times(self.extra_vms['axon'],self.t)
         ais_spikes = get_spike_times(self.extra_vms['ais'],self.t)
-        # for i in range(len(soma_spikes)):
-        #     print(f'spike #{i} soma - {soma_spikes[i]}, ais - {ais_spikes[i]}, axon - {axon_spikes[i]}')
+        for i in range(len(soma_spikes)):
+            print(f'spike #{i} soma - {soma_spikes[i]}, ais - {ais_spikes[i]}, axon - {axon_spikes[i]}')
+    
+    def get_spontaneous(self):
+        fi_value = self.plot_fi_curve(start = 0,end =0.1, nruns = 1)
+       # First spike time in (s), init_stim starts stimulation at 0.2s (200ms)
+        if fi_value[0] == 0:
+            return "NoSponAct"
+        else:
+            return "SponAct"
+
+
+
 
 
 
     ##_______________________Added to enable run of TTX and overexpression functions
     def plot_model_FI_Vs_dvdt(self,vs_amp,wt_Vm,wt_t,sim_config,fnpre = '',wt_fi = None,wt2_data=None, start=0,end=2,nruns=21, dt=0.005): #wt2_data=None,
-       
-        wt_fi = [0, 0, 2, 6, 8, 10, 11, 12, 13, 14, 15, 15, 16, 17, 17, 18, 19, 19, 20, 20, 21] ##TF072624 Roy's HH tuning best FI
         
+        
+        wt_fi = [0, 0, 2, 6, 8, 10, 11, 12, 13, 14, 15, 15, 16, 17, 17, 18, 19, 19, 20, 20, 21] ##TF072624 Roy's HH tuning best FI
+      
         
 
         for curr_amp in vs_amp: #vs_amp is list
@@ -458,21 +767,23 @@ class Na12Model_TF:
             # fig_volts2.savefig(fn3)
 
             #Attempting wt and het on same plot
-            fig_volts3,axs = plt.subplots(2,figsize=(cm_to_in(8),cm_to_in(15)))
+            fig_volts3,axs = plt.subplots(2,figsize=(cm_to_in(30),cm_to_in(15)))
             self.plot_wtvmut_stim(wt_Vm=wt_Vm,wt_t=wt_t,axs = axs[0],stim_amp = curr_amp,dt=dt,sim_config=sim_config)
-            #print(wt_Vm)
-            #print(len(wt_Vm))
-            #print(wt_t)
-            #print(len(wt_t))
-            #print(self.volt_soma)
-            #print(len(self.volt_soma))
+            print(wt_Vm)
+            print(len(wt_Vm))
+            print(wt_t)
+            print(len(wt_t))
+            print(self.volt_soma)
+            print(len(self.volt_soma))
             plot_dvdt_from_volts_wtvmut(self.volt_soma,wt_Vm,dt,axs[1])
             fn4 = f'{self.plot_folder}/{fnpre}{curr_amp}_wtvmut.pdf'
             fig_volts3.savefig(fn4)
             
 
             #plt.show()
-            
+            ###
+
+
             # with open(csv_volts, 'w', newline='') as file:
             #     writer = csv.writer(file)
             #     writer.writerow(['Voltage'])  # Write header row
@@ -488,9 +799,9 @@ class Na12Model_TF:
         #     wr.writerow(fi_ans)
         # return fi_ans
     ##_________________________________________________________________________________________________
-    def plot_fi_curve_2line(self,start,end,nruns,wt_data=None,wt2_data=None, ax1 = None, fig = None,fn = 'ficurve'): #start=0,end=0.6,nruns=14 (change wt_data from None to add WT line), add in wt2_data for another line
-        fis = get_fi_curve(self.l5mdl,start,end,nruns,dt = 0.1,wt_data = wt_data,wt2_data=wt2_data,ax1=ax1,fig=fig,fn=f'{self.plot_folder}/{fn}.pdf') #add in wt2_data for another line
-        #print(fis)
+    def plot_fi_curve_2line(self,start,end,nruns,epochlabel='',wt_data=None,wt2_data=None, ax1 = None, fig = None,fn = 'ficurve'): #start=0,end=0.6,nruns=14 (change wt_data from None to add WT line), add in wt2_data for another line
+        fis = get_fi_curve(self.l5mdl,start,end,nruns,dt = 0.1,wt_data = wt_data,wt2_data=wt2_data,ax1=ax1,fig=fig,fn=f'{self.plot_folder}/{fn}.pdf',epochlabel=epochlabel) #add in wt2_data for another line
+        print(fis)
         with open (f'{self.plot_folder}/{fn}-FI-list.txt','w') as file:
             file.write(','.join(str(fi) for fi in fis))
         file.close()
@@ -499,21 +810,30 @@ class Na12Model_TF:
         return fis
 
 
-    def wtvsmut_stim_dvdt(self,vs_amp,wt_Vm,wt_t,sim_config,het_Vm=None,het_t=None,fnpre = '', dt=0.005):
+    def wtvsmut_stim_dvdt(self,vs_amp,wt_Vm,wt_t,sim_config,het_Vm=None,het_t=None,fnpre = '', dt=0.005,stim_dur=500, clr='red'): ##TF111524 added stim_dur
         for curr_amp in vs_amp:
             figures = []
 
             #Attempting wt and het on same plot
-            fig_volts3,axs = plt.subplots(2,figsize=(cm_to_in(8),cm_to_in(15)))
-            self.plot_wtvmut_stim(wt_Vm=wt_Vm,wt_t=wt_t,axs = axs[0],stim_amp = curr_amp,dt=dt,sim_config=sim_config, het_Vm=het_Vm,het_t=het_t)
-            #print(wt_Vm)
-            #print(len(wt_Vm))
-            #print(wt_t)
-            #print(len(wt_t))
-            #print(self.volt_soma)
-            #print(len(self.volt_soma))
-            plot_dvdt_from_volts_wtvmut(self.volt_soma,wt_Vm,dt,axs[1],het_Vm=het_Vm)
+            fig_volts3,axs = plt.subplots(2,figsize=(cm_to_in(15),cm_to_in(22.5)), gridspec_kw={'height_ratios': [1,2]})
+            self.plot_wtvmut_stim(wt_Vm=wt_Vm,wt_t=wt_t,axs = axs[0],stim_amp = curr_amp,dt=dt,sim_config=sim_config, het_Vm=het_Vm,het_t=het_t, stim_dur=stim_dur, clr=clr)
+            # Set fixed axes for the dvdt plot
+            axs[0].set_ylim(-80, 60)
+
+            print(wt_Vm)
+            print(len(wt_Vm))
+            print(wt_t)
+            print(len(wt_t))
+            print(self.volt_soma)
+            print(len(self.volt_soma))
+            plot_dvdt_from_volts_wtvmut(self.volt_soma,wt_Vm,dt,axs[1],het_Vm=het_Vm, clr=clr)
+            
+            # Set fixed axes for the dvdt plot
+            axs[1].set_ylim(-200, 1000)
+            axs[1].set_xlim(-80, 60)
+
             fn4 = f'{self.plot_folder}/{fnpre}_{curr_amp}_wtvmut.pdf'
+            plt.tight_layout(pad=2.0)  # Adjust the padding
             fig_volts3.savefig(fn4)
             
 
@@ -570,12 +890,12 @@ def overexp(na12name,mut_name, plots_folder, wt_fac,mut_fac,mutTXT=None,plot_wt=
         #wt_fi = sim.plot_model_FI_Vs_dvdt([0.3,0.5,1,1.5,2,2.5,3],fnpre=f'{fnpre}_FI_')
     else:
         wt_fi = []
-    #print(f'wt_fi is {wt_fi}')
+    print(f'wt_fi is {wt_fi}')
     if mut_fac:
         sim.make_mut(na12mechs[1],f'{params_folder}{mutTXT}') #updates mech (Arg[1]) with new mod params dict (Arg[2])
-        #print('making mut')
+        print('making mut')
         update_mod_param(sim.l5mdl,['na16mut'], mut_fac) #Adds multiplier to updated mod/mech parameters
-        #print('updated mod params')
+        print('updated mod params')
         sim.l5mdl.h.finitialize()
         if plot_wt:
             sim.plot_model_FI_Vs_dvdt([0.5,1,2],wt_fi = wt_fi,fnpre=f'{fnpre}mutX{mut_fac}_')
@@ -605,6 +925,29 @@ def ttx(na16name,na16mut,plots_folder,wt_factor,mut_factor,fnpre = 'mut_TTX',axo
     sim.plot_model_FI_Vs_dvdt([1],fnpre=f'{fnpre}WT_{wt_factor*100}_Mut_{mut_factor *100}_') #only plot 1nA rather than range of amps
 
 
+####____________________________________________________________________________________________    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Scanning Code below for fine tuning
+###########################################################################################################
+###########################################################################################################
+###########################################################################################################
 
         
 def scan_sec_na():
@@ -805,3 +1148,38 @@ def dvdt_all_plot(al1 = 'na12_orig1', al2= 'na12_R850P_5may',stim_amp = 0.5, sti
     axs.legend()
     fn = f'./Plots/Tim/{al2}_{stim_amp}_{stim_dur}.pdf'
     fig_volts.savefig(fn)
+
+
+
+
+#sim = Na12Model_TF('na12_orig1', 'na12_orig1')
+#sim.plot_currents()
+#sim.get_ap_init_site()
+#scan_sec_na()
+#update_param_value(sim.l5mdl,['SKv3_1'],'mtaumul',1)
+#sim.plot_volts_dvdt()
+#sim.plot_fi_curve(0,1,10)
+#default_model(al1 = 'na12_orig1',al2 = 'na12_orig1',typ='WT')
+#scanK()
+#scanKT()
+#scanKv31()
+#scan12_16()
+##plot_mutant(na12name = 'na12_R850P',mut_name= 'na12_R850P')
+#sim.plot_axonal_ks()
+"""
+for i in range (6,12):
+    for j in range (1,3):
+        dvdt_all_plot(al1 = 'na12_orig1', al2= 'na12_R850P_5may', stim_amp=i*0.05,  stim_dur = j* 500 )
+
+for i in range (6,12):
+    for j in range (1,3):
+        dvdt_all_plot(al1 = 'na12_orig1', al2= 'na12_R850P_old', stim_amp=i*0.05,  stim_dur = j* 500 )
+    
+for i in range (6,12):
+    for j in range (1,3):
+        dvdt_all_plot(al1 = 'na12_orig1', al2= 'R850P', stim_amp=i*0.05,  stim_dur = j* 500 )
+"""
+
+
+#dvdt_all_plot(al1 = 'na12_orig1', al2= 'na12_R850P_old', stim_amp=0.7,  stim_dur = 500 )
+#dvdt_all_plot(al1 = 'na12_orig1', al2= 'na12_R850P_5may', stim_amp=0.7,  stim_dur = 500 )

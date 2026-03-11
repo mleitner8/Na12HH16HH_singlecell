@@ -1,0 +1,276 @@
+message received: {'amp': 0.2, 'rate': 0}
+inserting data into storage: {'trial_label': 'grid_search_00000', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 0.2, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00000', 'amp': 0.2, 'rate': 0}
+inserting data into storage failed: entries keys exceed expected keys: dict_keys(['trial_label', 'trial_path', 'IClamp1.amp', 'saveFolder', 'simLabel', 'amp', 'rate']) != dict_keys(['id', 'trial_path', 'trial_label', 'path', 'config', 'data'])
+performed the following modifications to storage: [('IClamp1.amp', None), ('saveFolder', None), ('simLabel', None), ('amp', None), ('rate', None)]
+current columns: {'id': 'INTEGER', 'trial_path': 'TEXT', 'trial_label': 'TEXT', 'path': 'TEXT', 'config': 'TEXT', 'data': 'TEXT', 'IClamp1.amp': 'TEXT', 'saveFolder': 'TEXT', 'simLabel': 'TEXT', 'amp': 'TEXT', 'rate': 'TEXT'}
+assertion set() <= set() passed, performing insert
+message received: {'amp': 0.4, 'rate': 5}
+inserting data into storage: {'trial_label': 'grid_search_00001', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 0.4, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00001', 'amp': 0.4, 'rate': 5}
+inserting data into storage failed: entries keys exceed expected keys: dict_keys(['trial_label', 'trial_path', 'IClamp1.amp', 'saveFolder', 'simLabel', 'amp', 'rate']) != dict_keys(['id', 'trial_path', 'trial_label', 'path', 'config', 'data'])
+performed the following modifications to storage: [('IClamp1.amp', OperationalError('duplicate column name: IClamp1.amp')), ('saveFolder', OperationalError('duplicate column name: saveFolder')), ('simLabel', OperationalError('duplicate column name: simLabel')), ('amp', OperationalError('duplicate column name: amp')), ('rate', OperationalError('duplicate column name: rate'))]
+current columns: {'id': 'INTEGER', 'trial_path': 'TEXT', 'trial_label': 'TEXT', 'path': 'TEXT', 'config': 'TEXT', 'data': 'TEXT', 'IClamp1.amp': 'TEXT', 'saveFolder': 'TEXT', 'simLabel': 'TEXT', 'amp': 'TEXT', 'rate': 'TEXT'}
+assertion set() <= set() passed, performing insert
+message received: {'amp': 0.6, 'rate': 15}
+inserting data into storage: {'trial_label': 'grid_search_00002', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 0.6, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00002', 'amp': 0.6, 'rate': 15}
+inserting data into storage failed: entries keys exceed expected keys: dict_keys(['trial_label', 'trial_path', 'IClamp1.amp', 'saveFolder', 'simLabel', 'amp', 'rate']) != dict_keys(['trial_path', 'trial_label', 'path', 'config', 'data'])
+performed the following modifications to storage: [('IClamp1.amp', OperationalError('duplicate column name: IClamp1.amp')), ('saveFolder', OperationalError('duplicate column name: saveFolder')), ('simLabel', OperationalError('duplicate column name: simLabel')), ('amp', OperationalError('duplicate column name: amp')), ('rate', OperationalError('duplicate column name: rate'))]
+current columns: {'id': 'INTEGER', 'trial_path': 'TEXT', 'trial_label': 'TEXT', 'path': 'TEXT', 'config': 'TEXT', 'data': 'TEXT', 'IClamp1.amp': 'TEXT', 'saveFolder': 'TEXT', 'simLabel': 'TEXT', 'amp': 'TEXT', 'rate': 'TEXT'}
+assertion set() <= set() passed, performing insert
+message received: {'amp': 1, 'rate': 33}
+inserting data into storage: {'trial_label': 'grid_search_00004', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 1, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00004', 'amp': 1, 'rate': 33}
+inserting data into storage failed: entries keys exceed expected keys: dict_keys(['trial_label', 'trial_path', 'IClamp1.amp', 'saveFolder', 'simLabel', 'amp', 'rate']) != dict_keys(['id', 'trial_path', 'trial_label', 'path', 'config', 'data'])
+performed the following modifications to storage: [('IClamp1.amp', OperationalError('duplicate column name: IClamp1.amp')), ('saveFolder', OperationalError('duplicate column name: saveFolder')), ('simLabel', OperationalError('duplicate column name: simLabel')), ('amp', OperationalError('duplicate column name: amp')), ('rate', OperationalError('duplicate column name: rate'))]
+current columns: {'id': 'INTEGER', 'trial_path': 'TEXT', 'trial_label': 'TEXT', 'path': 'TEXT', 'config': 'TEXT', 'data': 'TEXT', 'IClamp1.amp': 'TEXT', 'saveFolder': 'TEXT', 'simLabel': 'TEXT', 'amp': 'TEXT', 'rate': 'TEXT'}
+assertion set() <= set() passed, performing insert
+message received: {'amp': 0.8, 'rate': 24}
+inserting data into storage: {'trial_label': 'grid_search_00003', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 0.8, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00003', 'amp': 0.8, 'rate': 24}
+inserting data into storage failed: entries keys exceed expected keys: dict_keys(['trial_label', 'trial_path', 'IClamp1.amp', 'saveFolder', 'simLabel', 'amp', 'rate']) != dict_keys(['id', 'trial_path', 'trial_label', 'path', 'config', 'data'])
+performed the following modifications to storage: [('IClamp1.amp', OperationalError('duplicate column name: IClamp1.amp')), ('saveFolder', OperationalError('duplicate column name: saveFolder')), ('simLabel', OperationalError('duplicate column name: simLabel')), ('amp', OperationalError('duplicate column name: amp')), ('rate', OperationalError('duplicate column name: rate'))]
+current columns: {'id': 'INTEGER', 'trial_path': 'TEXT', 'trial_label': 'TEXT', 'path': 'TEXT', 'config': 'TEXT', 'data': 'TEXT', 'IClamp1.amp': 'TEXT', 'saveFolder': 'TEXT', 'simLabel': 'TEXT', 'amp': 'TEXT', 'rate': 'TEXT'}
+assertion set() <= set() passed, performing insert
+message received: {'amp': 1, 'rate': 33}
+inserting data into storage: {'trial_label': 'grid_search_00004', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 1, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00004', 'amp': 1, 'rate': 33}
+message received: {'amp': 0.2, 'rate': 0}
+inserting data into storage: {'trial_label': 'grid_search_00000', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 0.2, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00000', 'amp': 0.2, 'rate': 0}
+message received: {'amp': 0.4, 'rate': 5}
+inserting data into storage: {'trial_label': 'grid_search_00001', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 0.4, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00001', 'amp': 0.4, 'rate': 5}
+message received: {'amp': 0.6, 'rate': 15}
+inserting data into storage: {'trial_label': 'grid_search_00002', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 0.6, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00002', 'amp': 0.6, 'rate': 15}
+message received: {'amp': 0.8, 'rate': 24}
+inserting data into storage: {'trial_label': 'grid_search_00003', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 0.8, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00003', 'amp': 0.8, 'rate': 24}
+message received: {'amp': 1, 'rate': 14}
+inserting data into storage: {'trial_label': 'grid_search_00004', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 1, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00004', 'amp': 1, 'rate': 14}
+message received: {'amp': 0.4, 'rate': 5}
+inserting data into storage: {'trial_label': 'grid_search_00001', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 0.4, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00001', 'amp': 0.4, 'rate': 5}
+message received: {'amp': 0.8, 'rate': 12}
+inserting data into storage: {'trial_label': 'grid_search_00003', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 0.8, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00003', 'amp': 0.8, 'rate': 12}
+message received: {'amp': 0.6, 'rate': 10}
+inserting data into storage: {'trial_label': 'grid_search_00002', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 0.6, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00002', 'amp': 0.6, 'rate': 10}
+message received: {'amp': 0.2, 'rate': 0}
+inserting data into storage: {'trial_label': 'grid_search_00000', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 0.2, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00000', 'amp': 0.2, 'rate': 0}
+message received: {'amp': 1.25, 'rate': 16}
+inserting data into storage: {'trial_label': 'grid_search_00004', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 1.25, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00004', 'amp': 1.25, 'rate': 16}
+message received: {'amp': 1.0, 'rate': 14}
+inserting data into storage: {'trial_label': 'grid_search_00003', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 1.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00003', 'amp': 1.0, 'rate': 14}
+message received: {'amp': 0.25, 'rate': 0}
+inserting data into storage: {'trial_label': 'grid_search_00000', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 0.25, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00000', 'amp': 0.25, 'rate': 0}
+message received: {'amp': 0.75, 'rate': 12}
+inserting data into storage: {'trial_label': 'grid_search_00002', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 0.75, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00002', 'amp': 0.75, 'rate': 12}
+message received: {'amp': 0.5, 'rate': 8}
+inserting data into storage: {'trial_label': 'grid_search_00001', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 0.5, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00001', 'amp': 0.5, 'rate': 8}
+message received: {'amp': 1.5, 'rate': 18}
+inserting data into storage: {'trial_label': 'grid_search_00005', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 1.5, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00005', 'amp': 1.5, 'rate': 18}
+message received: {'amp': 1.75, 'rate': 19}
+message received: {'amp': 2.5, 'rate': 22}
+inserting data into storage: {'trial_label': 'grid_search_00006', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 1.75, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00006', 'amp': 1.75, 'rate': 19}
+inserting data into storage: {'trial_label': 'grid_search_00009', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 2.5, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00009', 'amp': 2.5, 'rate': 22}
+message received: {'amp': 2.0, 'rate': 20}
+inserting data into storage: {'trial_label': 'grid_search_00007', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 2.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00007', 'amp': 2.0, 'rate': 20}
+message received: {'amp': 2.25, 'rate': 21}
+inserting data into storage: {'trial_label': 'grid_search_00008', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 2.25, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00008', 'amp': 2.25, 'rate': 21}
+message received: {'amp': 2.75, 'rate': 23}
+inserting data into storage: {'trial_label': 'grid_search_00010', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 2.75, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00010', 'amp': 2.75, 'rate': 23}
+message received: {'amp': 3.0, 'rate': 24}
+inserting data into storage: {'trial_label': 'grid_search_00011', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 3.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00011', 'amp': 3.0, 'rate': 24}
+message received: {'amp': 0.5, 'rate': 11}
+inserting data into storage: {'trial_label': 'grid_search_00001', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 0.5, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00001', 'amp': 0.5, 'rate': 11}
+message received: {'amp': 0.25, 'rate': 0}
+inserting data into storage: {'trial_label': 'grid_search_00000', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 0.25, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00000', 'amp': 0.25, 'rate': 0}
+message received: {'amp': 0.75, 'rate': 22}
+inserting data into storage: {'trial_label': 'grid_search_00002', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 0.75, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00002', 'amp': 0.75, 'rate': 22}
+message received: {'amp': 1.25, 'rate': 45}
+inserting data into storage: {'trial_label': 'grid_search_00004', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 1.25, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00004', 'amp': 1.25, 'rate': 45}
+message received: {'amp': 1.0, 'rate': 33}
+inserting data into storage: {'trial_label': 'grid_search_00003', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 1.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00003', 'amp': 1.0, 'rate': 33}
+message received: {'amp': 2.0, 'rate': 2}
+inserting data into storage: {'trial_label': 'grid_search_00007', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 2.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00007', 'amp': 2.0, 'rate': 2}
+message received: {'amp': 1.5, 'rate': 3}
+inserting data into storage: {'trial_label': 'grid_search_00005', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 1.5, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00005', 'amp': 1.5, 'rate': 3}
+message received: {'amp': 1.75, 'rate': 2}
+inserting data into storage: {'trial_label': 'grid_search_00006', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 1.75, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00006', 'amp': 1.75, 'rate': 2}
+message received: {'amp': 2.5, 'rate': 2}
+inserting data into storage: {'trial_label': 'grid_search_00009', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 2.5, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00009', 'amp': 2.5, 'rate': 2}
+message received: {'amp': 2.25, 'rate': 2}
+inserting data into storage: {'trial_label': 'grid_search_00008', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 2.25, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00008', 'amp': 2.25, 'rate': 2}
+message received: {'amp': 2.75, 'rate': 1}
+message received: {'amp': 3.0, 'rate': 1}
+inserting data into storage: {'trial_label': 'grid_search_00010', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 2.75, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00010', 'amp': 2.75, 'rate': 1}
+inserting data into storage: {'trial_label': 'grid_search_00011', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 3.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00011', 'amp': 3.0, 'rate': 1}
+message received: {'amp': 0.25, 'rate': 0}
+inserting data into storage: {'trial_label': 'grid_search_00000', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 0.25, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00000', 'amp': 0.25, 'rate': 0}
+message received: {'amp': 1.0, 'rate': 33}
+inserting data into storage: {'trial_label': 'grid_search_00003', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 1.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00003', 'amp': 1.0, 'rate': 33}
+message received: {'amp': 0.75, 'rate': 22}
+inserting data into storage: {'trial_label': 'grid_search_00002', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 0.75, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00002', 'amp': 0.75, 'rate': 22}
+message received: {'amp': 0.5, 'rate': 11}
+inserting data into storage: {'trial_label': 'grid_search_00001', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 0.5, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00001', 'amp': 0.5, 'rate': 11}
+message received: {'amp': 1.25, 'rate': 45}
+inserting data into storage: {'trial_label': 'grid_search_00004', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 1.25, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00004', 'amp': 1.25, 'rate': 45}
+message received: {'amp': 2.25, 'rate': 2}
+inserting data into storage: {'trial_label': 'grid_search_00008', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 2.25, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00008', 'amp': 2.25, 'rate': 2}
+message received: {'amp': 1.5, 'rate': 3}
+inserting data into storage: {'trial_label': 'grid_search_00005', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 1.5, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00005', 'amp': 1.5, 'rate': 3}
+message received: {'amp': 2.0, 'rate': 2}
+inserting data into storage: {'trial_label': 'grid_search_00007', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 2.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00007', 'amp': 2.0, 'rate': 2}
+message received: {'amp': 2.5, 'rate': 2}
+inserting data into storage: {'trial_label': 'grid_search_00009', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 2.5, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00009', 'amp': 2.5, 'rate': 2}
+message received: {'amp': 1.75, 'rate': 2}
+inserting data into storage: {'trial_label': 'grid_search_00006', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 1.75, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00006', 'amp': 1.75, 'rate': 2}
+message received: {'amp': 3.0, 'rate': 1}
+inserting data into storage: {'trial_label': 'grid_search_00011', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 3.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00011', 'amp': 3.0, 'rate': 1}
+message received: {'amp': 2.75, 'rate': 1}
+inserting data into storage: {'trial_label': 'grid_search_00010', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 2.75, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00010', 'amp': 2.75, 'rate': 1}
+message received: {'amp': 0.25, 'rate': 0}
+message received: {'amp': 0.5, 'rate': 8}
+inserting data into storage: {'trial_label': 'grid_search_00000', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 0.25, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00000', 'amp': 0.25, 'rate': 0}
+inserting data into storage: {'trial_label': 'grid_search_00001', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 0.5, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00001', 'amp': 0.5, 'rate': 8}
+message received: {'amp': 1.25, 'rate': 16}
+inserting data into storage: {'trial_label': 'grid_search_00004', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 1.25, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00004', 'amp': 1.25, 'rate': 16}
+message received: {'amp': 1.0, 'rate': 14}
+inserting data into storage: {'trial_label': 'grid_search_00003', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 1.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00003', 'amp': 1.0, 'rate': 14}
+message received: {'amp': 0.75, 'rate': 12}
+inserting data into storage: {'trial_label': 'grid_search_00002', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 0.75, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00002', 'amp': 0.75, 'rate': 12}
+message received: {'amp': 2.25, 'rate': 21}
+message received: {'amp': 1.5, 'rate': 18}
+message received: {'amp': 1.75, 'rate': 19}
+inserting data into storage: {'trial_label': 'grid_search_00005', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 1.5, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00005', 'amp': 1.5, 'rate': 18}
+inserting data into storage: {'trial_label': 'grid_search_00008', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 2.25, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00008', 'amp': 2.25, 'rate': 21}
+inserting data into storage: {'trial_label': 'grid_search_00006', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 1.75, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00006', 'amp': 1.75, 'rate': 19}
+message received: {'amp': 2.0, 'rate': 20}
+inserting data into storage: {'trial_label': 'grid_search_00007', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 2.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00007', 'amp': 2.0, 'rate': 20}
+message received: {'amp': 2.5, 'rate': 22}
+inserting data into storage: {'trial_label': 'grid_search_00009', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 2.5, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00009', 'amp': 2.5, 'rate': 22}
+message received: {'amp': 2.75, 'rate': 23}
+inserting data into storage: {'trial_label': 'grid_search_00010', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 2.75, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00010', 'amp': 2.75, 'rate': 23}
+message received: {'amp': 3.0, 'rate': 24}
+inserting data into storage: {'trial_label': 'grid_search_1371e734', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 3.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_1371e734', 'amp': 3.0, 'rate': 24}
+message received: {'amp': 3.75, 'rate': 27}
+inserting data into storage: {'trial_label': 'grid_search_00003', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 3.75, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00003', 'amp': 3.75, 'rate': 27}
+message received: {'amp': 3.5, 'rate': 26}
+inserting data into storage: {'trial_label': 'grid_search_00002', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 3.5, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00002', 'amp': 3.5, 'rate': 26}
+message received: {'amp': 3.0, 'rate': 24}
+inserting data into storage: {'trial_label': 'grid_search_00000', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 3.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00000', 'amp': 3.0, 'rate': 24}
+message received: {'amp': 3.25, 'rate': 25}
+inserting data into storage: {'trial_label': 'grid_search_00001', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 3.25, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00001', 'amp': 3.25, 'rate': 25}
+message received: {'amp': 4.0, 'rate': 28}
+inserting data into storage: {'trial_label': 'grid_search_00004', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 4.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00004', 'amp': 4.0, 'rate': 28}
+message received: {'amp': 4.75, 'rate': 31}
+inserting data into storage: {'trial_label': 'grid_search_00002', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 4.75, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00002', 'amp': 4.75, 'rate': 31}
+message received: {'amp': 5.0, 'rate': 32}
+inserting data into storage: {'trial_label': 'grid_search_00003', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 5.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00003', 'amp': 5.0, 'rate': 32}
+message received: {'amp': 4.25, 'rate': 29}
+inserting data into storage: {'trial_label': 'grid_search_00000', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 4.25, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00000', 'amp': 4.25, 'rate': 29}
+message received: {'amp': 4.5, 'rate': 30}
+inserting data into storage: {'trial_label': 'grid_search_00001', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 4.5, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00001', 'amp': 4.5, 'rate': 30}
+message received: {'amp': 5.25, 'rate': 33}
+inserting data into storage: {'trial_label': 'grid_search_00004', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 5.25, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00004', 'amp': 5.25, 'rate': 33}
+message received: {'amp': 6.0, 'rate': 36}
+inserting data into storage: {'trial_label': 'grid_search_00007', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 6.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00007', 'amp': 6.0, 'rate': 36}
+message received: {'amp': 5.5, 'rate': 34}
+inserting data into storage: {'trial_label': 'grid_search_00005', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 5.5, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00005', 'amp': 5.5, 'rate': 34}
+message received: {'amp': 5.75, 'rate': 35}
+inserting data into storage: {'trial_label': 'grid_search_00006', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 5.75, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00006', 'amp': 5.75, 'rate': 35}
+message received: {'amp': 6.0, 'rate': 36}
+inserting data into storage: {'trial_label': 'grid_search_00000', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 6.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00000', 'amp': 6.0, 'rate': 36}
+message received: {'amp': 8.0, 'rate': 47}
+inserting data into storage: {'trial_label': 'grid_search_00002', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 8.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00002', 'amp': 8.0, 'rate': 47}
+message received: {'amp': 7.0, 'rate': 42}
+inserting data into storage: {'trial_label': 'grid_search_00001', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 7.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00001', 'amp': 7.0, 'rate': 42}
+message received: {'amp': 11.0, 'rate': 70}
+inserting data into storage: {'trial_label': 'grid_search_00003', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 11.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00003', 'amp': 11.0, 'rate': 70}
+message received: {'amp': 8.0, 'rate': 47}
+inserting data into storage: {'trial_label': 'grid_search_00000', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 8.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00000', 'amp': 8.0, 'rate': 47}
+message received: {'amp': 9.0, 'rate': 54}
+inserting data into storage: {'trial_label': 'grid_search_00001', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 9.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00001', 'amp': 9.0, 'rate': 54}
+message received: {'amp': 12.0, 'rate': 68}
+inserting data into storage: {'trial_label': 'grid_search_00004', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 12.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00004', 'amp': 12.0, 'rate': 68}
+message received: {'amp': 10.0, 'rate': 63}
+inserting data into storage: {'trial_label': 'grid_search_00002', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 10.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00002', 'amp': 10.0, 'rate': 63}
+message received: {'amp': 3.0, 'rate': 24}
+inserting data into storage: {'trial_label': 'grid_search_00002', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 3.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00002', 'amp': 3.0, 'rate': 24}
+message received: {'amp': 5.0, 'rate': 32}
+inserting data into storage: {'trial_label': 'grid_search_00004', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 5.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00004', 'amp': 5.0, 'rate': 32}
+message received: {'amp': 4.0, 'rate': 28}
+inserting data into storage: {'trial_label': 'grid_search_00003', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 4.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00003', 'amp': 4.0, 'rate': 28}
+message received: {'amp': 1.0, 'rate': 14}
+inserting data into storage: {'trial_label': 'grid_search_00000', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 1.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00000', 'amp': 1.0, 'rate': 14}
+message received: {'amp': 6.0, 'rate': 36}
+inserting data into storage: {'trial_label': 'grid_search_00005', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 6.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00005', 'amp': 6.0, 'rate': 36}
+message received: {'amp': 9.0, 'rate': 54}
+message received: {'amp': 7.0, 'rate': 42}
+inserting data into storage: {'trial_label': 'grid_search_00008', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 9.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00008', 'amp': 9.0, 'rate': 54}
+inserting data into storage: {'trial_label': 'grid_search_00006', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 7.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00006', 'amp': 7.0, 'rate': 42}
+message received: {'amp': 8.0, 'rate': 47}
+inserting data into storage: {'trial_label': 'grid_search_00007', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 8.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00007', 'amp': 8.0, 'rate': 47}
+message received: {'amp': 10.0, 'rate': 63}
+inserting data into storage: {'trial_label': 'grid_search_00009', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 10.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00009', 'amp': 10.0, 'rate': 63}
+message received: {'amp': 11.0, 'rate': 70}
+inserting data into storage: {'trial_label': 'grid_search_00010', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 11.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00010', 'amp': 11.0, 'rate': 70}
+message received: {'amp': 14.0, 'rate': 52}
+inserting data into storage: {'trial_label': 'grid_search_00013', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 14.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00013', 'amp': 14.0, 'rate': 52}
+message received: {'amp': 15.0, 'rate': 46}
+inserting data into storage: {'trial_label': 'grid_search_00014', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 15.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00014', 'amp': 15.0, 'rate': 46}
+message received: {'amp': 13.0, 'rate': 59}
+message received: {'amp': 12.0, 'rate': 68}
+inserting data into storage: {'trial_label': 'grid_search_00012', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 13.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00012', 'amp': 13.0, 'rate': 59}
+inserting data into storage: {'trial_label': 'grid_search_00011', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 12.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00011', 'amp': 12.0, 'rate': 68}
+message received: {'amp': 14.0, 'rate': 52}
+inserting data into storage: {'trial_label': 'grid_search_00003', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 14.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00003', 'amp': 14.0, 'rate': 52}
+message received: {'amp': 12.0, 'rate': 68}
+inserting data into storage: {'trial_label': 'grid_search_00001', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 12.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00001', 'amp': 12.0, 'rate': 68}
+message received: {'amp': 13.0, 'rate': 59}
+inserting data into storage: {'trial_label': 'grid_search_00002', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 13.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00002', 'amp': 13.0, 'rate': 59}
+message received: {'amp': 11.0, 'rate': 70}
+inserting data into storage: {'trial_label': 'grid_search_00000', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 11.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00000', 'amp': 11.0, 'rate': 70}
+message received: {'amp': 15.0, 'rate': 46}
+inserting data into storage: {'trial_label': 'grid_search_00004', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 15.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00004', 'amp': 15.0, 'rate': 46}
+message received: {'amp': 20.0, 'rate': 23}
+inserting data into storage: {'trial_label': 'grid_search_00009', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 20.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00009', 'amp': 20.0, 'rate': 23}
+message received: {'amp': 17.0, 'rate': 36}
+inserting data into storage: {'trial_label': 'grid_search_00006', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 17.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00006', 'amp': 17.0, 'rate': 36}
+message received: {'amp': 16.0, 'rate': 41}
+inserting data into storage: {'trial_label': 'grid_search_00005', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 16.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00005', 'amp': 16.0, 'rate': 41}
+message received: {'amp': 19.0, 'rate': 28}
+inserting data into storage: {'trial_label': 'grid_search_00008', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 19.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00008', 'amp': 19.0, 'rate': 28}
+message received: {'amp': 18.0, 'rate': 32}
+inserting data into storage: {'trial_label': 'grid_search_00007', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 18.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00007', 'amp': 18.0, 'rate': 32}
+message received: {'amp': 5.0, 'rate': 1}
+inserting data into storage: {'trial_label': 'grid_search_00004', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 5.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00004', 'amp': 5.0, 'rate': 1}
+message received: {'amp': 4.0, 'rate': 1}
+inserting data into storage: {'trial_label': 'grid_search_00003', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 4.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00003', 'amp': 4.0, 'rate': 1}
+message received: {'amp': 2.0, 'rate': 2}
+inserting data into storage: {'trial_label': 'grid_search_00001', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 2.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00001', 'amp': 2.0, 'rate': 2}
+message received: {'amp': 3.0, 'rate': 1}
+inserting data into storage: {'trial_label': 'grid_search_00002', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 3.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00002', 'amp': 3.0, 'rate': 1}
+message received: {'amp': 1.0, 'rate': 33}
+inserting data into storage: {'trial_label': 'grid_search_00000', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 1.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00000', 'amp': 1.0, 'rate': 33}
+message received: {'amp': 9.0, 'rate': 1}
+inserting data into storage: {'trial_label': 'grid_search_00008', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 9.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00008', 'amp': 9.0, 'rate': 1}
+message received: {'amp': 8.0, 'rate': 1}
+inserting data into storage: {'trial_label': 'grid_search_00007', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 8.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00007', 'amp': 8.0, 'rate': 1}
+message received: {'amp': 6.0, 'rate': 1}
+inserting data into storage: {'trial_label': 'grid_search_00005', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 6.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00005', 'amp': 6.0, 'rate': 1}
+message received: {'amp': 12.0, 'rate': 1}
+inserting data into storage: {'trial_label': 'grid_search_00011', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 12.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00011', 'amp': 12.0, 'rate': 1}
+message received: {'amp': 11.0, 'rate': 1}
+inserting data into storage: {'trial_label': 'grid_search_00010', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 11.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00010', 'amp': 11.0, 'rate': 1}
+message received: {'amp': 14.0, 'rate': 1}
+message received: {'amp': 15.0, 'rate': 2}
+inserting data into storage: {'trial_label': 'grid_search_00013', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 14.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00013', 'amp': 14.0, 'rate': 1}
+inserting data into storage: {'trial_label': 'grid_search_00014', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 15.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00014', 'amp': 15.0, 'rate': 2}
+message received: {'amp': 13.0, 'rate': 1}
+inserting data into storage: {'trial_label': 'grid_search_00012', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 13.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00012', 'amp': 13.0, 'rate': 1}
+message received: {'amp': 1.5, 'rate': 18}
+inserting data into storage: {'trial_label': 'grid_search_00003', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 1.5, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00003', 'amp': 1.5, 'rate': 18}
+message received: {'amp': 2.0, 'rate': 20}
+inserting data into storage: {'trial_label': 'grid_search_00004', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 2.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00004', 'amp': 2.0, 'rate': 20}
+message received: {'amp': 1.0, 'rate': 14}
+inserting data into storage: {'trial_label': 'grid_search_00002', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 1.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00002', 'amp': 1.0, 'rate': 14}
+message received: {'amp': 0, 'rate': 0}
+inserting data into storage: {'trial_label': 'grid_search_00000', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00000', 'amp': 0, 'rate': 0}
+message received: {'amp': 0.5, 'rate': 8}
+inserting data into storage: {'trial_label': 'grid_search_00001', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 0.5, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00001', 'amp': 0.5, 'rate': 8}
+message received: {'amp': 3.0, 'rate': 24}
+inserting data into storage: {'trial_label': 'grid_search_00006', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 3.0, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00006', 'amp': 3.0, 'rate': 24}
+message received: {'amp': 2.5, 'rate': 22}
+inserting data into storage: {'trial_label': 'grid_search_00005', 'trial_path': '/Users/mollyleitner/Dev/Na12HH16HH_singlecell/src/grid_batch', 'IClamp1.amp': 2.5, 'saveFolder': './grid_batch', 'simLabel': 'grid_search_00005', 'amp': 2.5, 'rate': 22}

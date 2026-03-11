@@ -40,7 +40,7 @@ def cm_to_in(cm):
 
 
 
-def get_fi_curve(mdl,s_amp,e_amp,nruns,wt_data=None,wt2_data=None, ax1=None,fig = None,dt = 0.01,fn = './Plots/ficurve.pdf'):
+def get_fi_curve(mdl,s_amp,e_amp,nruns,wt_data=None,wt2_data=None, ax1=None,fig = None,dt = 0.01,fn = './Plots/ficurve.pdf', epochlabel=''):
     all_volts = []
     npeaks = []
     x_axis = np.linspace(s_amp,e_amp,nruns)
@@ -48,7 +48,11 @@ def get_fi_curve(mdl,s_amp,e_amp,nruns,wt_data=None,wt2_data=None, ax1=None,fig 
     stim_length2 = int(1000/dt)
     for curr_amp in x_axis:
         mdl.init_stim(amp = curr_amp,dt = dt)
-        curr_volts,_,_,_ = mdl.run_model()
+        res = mdl.run_model()
+        if isinstance(res, (tuple, list)):
+            curr_volts = res[0]
+        else:
+            curr_volts = res
         #curr_peaks,_ = find_peaks(curr_volts[:stim_length],height = -20)
         curr_peaks,_ = find_peaks(curr_volts[:stim_length2],height = -30) #modified for na16 TTX experiments
         all_volts.append(curr_volts)
@@ -57,7 +61,10 @@ def get_fi_curve(mdl,s_amp,e_amp,nruns,wt_data=None,wt2_data=None, ax1=None,fig 
     if ax1 is None:
         fig,ax1 = plt.subplots(1,1)
         ax1.plot(x_axis,npeaks,marker = 'o',markersize=1,linestyle = '-',color = 'red')
-    ax1.set_title('FI Curve')
+    title = 'FI Curve'
+    if epochlabel:
+        title = f"{title} {epochlabel}"
+    ax1.set_title(title)
     ax1.set_xlabel('Stim [nA]')
     ax1.set_ylabel('nAPs for 500ms epoch')
     if wt_data is None:

@@ -70,16 +70,16 @@ proc populate_axon(){
 
 proc create_ais(){
     access cell.axon[0]
-    L = 90  // Total length of this section = 90um
+    L = 90                      // Total length of this section = 90um
     if (L == 0) {
         print "ERROR: Length of cell.axon[0] is zero. Cannot create AIS."
-        return // Exit the procedure
+        return                  // Exit the procedure
     }
-    nseg = 121 // Number of segments covering all of axon[0]
-    cell.axon[0] nseg = nseg // Apply the number of segments to the axon
+    nseg = 121                  // Number of segments covering all of axon[0]
+    cell.axon[0] nseg = nseg    // Apply the number of segments to the axon
 
-    ais_end = 45 // End of the AIS in micrometers
-    ais_mid = ais_end / 2 // Midpoint of the AIS in micrometers
+    ais_end = 45                // End of the AIS in micrometers
+    ais_mid = ais_end / 2       // Midpoint of the AIS in micrometers
 
 	
 	//////////////// WT trying to fine tune to get closer to hard-coded AIS v5. ***This is best WT 022425*** gbar=6 at segment=20
@@ -89,11 +89,20 @@ proc create_ais(){
     ais_end12 = min(L, ais_mid12 + ais_width12 / 2)   // Constrain end to be <= L
 
     ais_mid16 = ais_mid + 0.01 * ais_end              // Adjusted midpoint for NaV1.6 as percentage of AIS
-    ais_width16 = 0.98 * ais_end                      // Width of the AIS "arch" for NaV1.6 in micrometers
+    ais_width16 = 0.98 * ais_end     ///ais_width16 = 1.2 * ais_end                  // Width of the AIS "arch" for NaV1.6 in micrometers
     ais_start16 = max(0, ais_mid16 - ais_width16 / 2) // Constrain start to be >= 0
     ais_end16 = min(L, ais_mid16 + ais_width16 / 2)   // Constrain end to be <= L
 	////////////////
 	
+
+
+
+
+
+
+    /////////////////////////////////////
+    //////////// AIS SHIFTS //////////// 
+    ///////////////////////////////////
     
     //////////////// Crossover Point right shift 5 - crossover point gbar=6, segment=45
     //ais_mid12 = ais_mid - 0.0 * ais_end                // Adjusted midpoint for NaV1.2 as percentage of AIS
@@ -184,6 +193,7 @@ proc create_ais(){
     //ais_start16 = max(0, ais_mid16 - ais_width16 / 2) // Constrain start to be >= 0
     //ais_end16 = min(L, ais_mid16 + ais_width16 / 2)   // Constrain end to be <= L
 	////////////////
+    ///////////////////////////////////
     
 
 
@@ -201,8 +211,8 @@ proc create_ais(){
         x = i / (nseg - 1) // Correct way to calculate x as a fraction of the total length
         position = x * L // Position along the axon in micrometers
 
-        print "i=", i, " x=", x, " position=", position, " ais_start12=", ais_start12, " ais_end12=", ais_end12 // Debug print
-        print "i=", i, " x=", x, " position=", position, " ais_start16=", ais_start16, " ais_end16=", ais_end16 // Debug print
+        //print "i=", i, " x=", x, " position=", position, " ais_start12=", ais_start12, " ais_end12=", ais_end12 // Debug print
+        //print "i=", i, " x=", x, " position=", position, " ais_start16=", ais_start16, " ais_end16=", ais_end16 // Debug print
         
         ///////////////// Parabolic-like function for Na12///////////////
         if (position >= ais_start12 && position <= ais_end12) {
@@ -214,7 +224,7 @@ proc create_ais(){
             na12_profile = 0 // Value outside the arch
         }
         gbar_na12(x) = na12_profile
-        print "na12_profile=", na12_profile // Debug print
+        //print "na12_profile=", na12_profile // Debug print
         //////////////////////////////
     
 
@@ -229,7 +239,7 @@ proc create_ais(){
             na12mut_profile = 0 // Value outside the arch
         }
         gbar_na12mut(x) = na12mut_profile
-        print "na12mut_profile=", na12mut_profile // Debug print
+        //print "na12mut_profile=", na12mut_profile // Debug print
         //////////////////////////////
 
 
@@ -244,7 +254,7 @@ proc create_ais(){
             na16_profile = naked_axon_na / 2 // Value outside the arch
         }
         gbar_na16(x) = na16_profile
-        print "na16_profile=", na16_profile // Debug print
+        //print "na16_profile=", na16_profile // Debug print
         //////////////////////////////
         
 
@@ -259,11 +269,11 @@ proc create_ais(){
             na16mut_profile = naked_axon_na / 2 // Value outside the arch
         }
         gbar_na16mut(x) = na16mut_profile
-        print "na16mut_profile=", na16mut_profile // Debug print
+        //print "na16mut_profile=", na16mut_profile // Debug print
         //////////////////////////////
     
         if (x < 0 || x > 1) { // Check for out-of-range x
-            print "ERROR: x is out of range!"
+            //print "ERROR: x is out of range!"
         }
     }
 
@@ -306,6 +316,15 @@ proc update_dend(){
 		gbar_na16mut = dend_na16/2
 		gSKv3_1bar_SKv3_1 = dend_k
 	}
+
+    // --- Added this block to set initial basal dendrite vals ---
+    forsec cell.basal{
+        gbar_na12 = dend_na12/2
+        gbar_na12mut = dend_na12/2
+        gbar_na16 = dend_na16/2
+        gbar_na16mut = dend_na16/2
+        gSKv3_1bar_SKv3_1 = dend_k
+    }
 }
 
 proc working(){
