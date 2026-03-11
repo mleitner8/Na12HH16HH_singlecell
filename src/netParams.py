@@ -30,11 +30,13 @@ netParams = specs.NetParams() # Object class NetParams to store network paramete
 #------------------------------------------------------------------------------
 # Load cell rules previously saved using netpyne format
 #------------------------------------------------------------------------------
-loadCellParams = False
+loadCellParams = True
 saveCellParams = False
 
 if loadCellParams:
-   netParams.loadCellParamsRule(label='PT5B_full', fileName='../cells/Na12HH16HH_TF.json')
+   netParams.loadCellParamsRule(label='PT5B_full', fileName='../cells/Na12HH16HH_TF_Feb18th2026_WeightNorm.json.json')
+   #netParams.addCellParamsWeightNorm('PT5B_full', '../conn/PT5B_full_weightNorm.pkl',
+                                    # threshold=cfg.weightNormThreshold)
 
 #------------------------------------------------------------------------------
 # Includes importing from hoc template or python class, and setting additional params
@@ -109,10 +111,15 @@ if not loadCellParams:
     del netParams.cellParams['PT5B_full']['secs']['dend_0']['pointps']
 
     # Decrease dendritic Na
-    for secName in netParams.cellParams['PT5B_full']['secs']:
-       if secName.startswith('apic'):
-            netParams.cellParams['PT5B_full']['secs'][secName]['mechs']['na12']['gbar'] *= cfg.dendNa
-            netParams.cellParams['PT5B_full']['secs'][secName]['mechs']['na12mut']['gbar'] *= cfg.dendNa
+    #for secName in netParams.cellParams['PT5B_full']['secs']:
+       #if secName.startswith('apic'):
+            #netParams.cellParams['PT5B_full']['secs'][secName]['mechs']['na12']['gbar'] *= cfg.dendNa
+            #netParams.cellParams['PT5B_full']['secs'][secName]['mechs']['na12mut']['gbar'] *= cfg.dendNa
+
+    # Remove Na
+    if cfg.removeNa:
+        for secName in cellRule['secs']: cellRule['secs'][secName]['mechs']['na12mut']['gbar'] = 0.0 #na12mut only for het
+        for secName in cellRule['secs']: cellRule['secs'][secName]['mechs']['na12']['gbar'] = 0.0 #both for KO
 
     #set weight normalization
     netParams.addCellParamsWeightNorm('PT5B_full', '../conn/PT5B_full_weightNorm.pkl',
