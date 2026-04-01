@@ -14,12 +14,12 @@ import csv
 class Na12Model_TF:
 
     def __init__(self, na12name='na12annaTFHH2',
-                 mut_name='na12annaTFHH2',
+                 mut_name='na12annaTFHH2mut',
                  na12mechs=['na12', 'na12mut'],
                  na16name='na16HH_TF2',
                  na16mut_name='na16HH_TF2',
                  na16mechs=['na16', 'na16'],
-                 params_folder='./params/na12HMM_HOF_params/',
+                 params_folder='../cells/Neuron_Model_12HH16HH/params/',
                  ## na16name='na16_orig2',na16mechs = ['na16','na16mut'], na16mut_name='na16'
 
                  ais_nav12_fac=5.184,
