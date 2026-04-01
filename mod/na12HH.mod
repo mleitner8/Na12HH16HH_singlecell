@@ -1,4 +1,3 @@
-
 TITLE na3
 : Na current
 : modified from Jeff Magee. M.Migliore may97

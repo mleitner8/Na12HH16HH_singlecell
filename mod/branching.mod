@@ -9,8 +9,8 @@ VERBATIM
 ENDVERBATIM
 PROCEDURE init_files(){
 	VERBATIM {
-		
-		
+
+
 	}
 	ENDVERBATIM
 }

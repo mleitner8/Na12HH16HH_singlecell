@@ -1,20 +1,21 @@
+
 strdef fitFile,timesFile,paramsFile,stimFile,outFile,modelFile,outFPre,base
 objref st,st_dend,stims,fin,fout,pmat,matOut,stimtime,somaref,secref,extVec,strFunc,most,root,transvec
 
-ntimestep = 5000 
-nparams = 14 
-psize = 1 
-ntraces = 1 
-v_init = -70 
-calc_eca = 1 
-calc_eca = 1 
+ntimestep = 5000
+nparams = 14
+psize = 1
+ntraces = 1
+v_init = -70
+calc_eca = 1
+calc_eca = 1
 
-   stLoc = 0.5 
-base = "E:/GitHub/NeuroGPU/NeuroGPU_Base" 
-paramsFile = "./params/orig.csv" 
-stimFile = "./Stims/Stim_raw.csv" 
-modelFile = "./mosinit.hoc" 
-timesFile = "./Stims/times.csv" 
+   stLoc = 0.5
+base = "E:/GitHub/NeuroGPU/NeuroGPU_Base"
+paramsFile = "./params/orig.csv"
+stimFile = "./Stims/Stim_raw.csv"
+modelFile = "./mosinit.hoc"
+timesFile = "./Stims/times.csv"
 
 
 transvec = new Vector(nparams)
@@ -41,14 +42,14 @@ print secname()
 root.sec recSites.append()
 
 
- 
+
 secondorder=0
 proc runMatrix(){
 
 	//access dend[1]
 	sprint(outFile,"%s_%s.dat",outFPre,secname())
 
-	st.del=0 
+	st.del=0
 	st.dur=1e9
 	//printf ("$o1.nrow,$o2.nrow,$o2.ncol,%d,%d,%d",$o1.nrow,$o2.nrow,$o2.ncol)
 	matOut = new Matrix($o1.nrow,($o2.nrow*$o2.ncol))
@@ -67,7 +68,7 @@ proc runMatrix(){
 				matOut.x(sim,counter)=v(0.5)
 				counter+=1
 				fadvance()
-				
+
 			}
 		}
 	}
@@ -108,11 +109,11 @@ proc writeMatrix(){localobj temp
 }
 proc mul32(){localobj thisone
 	countSegs()
-	segsMat = segs+comps+1 
+	segsMat = segs+comps+1
 	//printf("1we have a matrix in the size of %d \n",segsMat )
 	segsToAdd = 32-segsMat%32
 	forall {
-		thisone = new SectionRef()   
+		thisone = new SectionRef()
 		if (thisone.nchild == 0 ) {
 			break
 			}
@@ -122,13 +123,13 @@ proc mul32(){localobj thisone
 	fcurrent()
 	countSegs()
 	//printf("we have a matrix in the size of %d \n",segs+comps+1 )
-	
+
 }
 proc writeVector(){
 	fout.aopen($s1)
 	$o2.vwrite(fout,3)
 	fout.close()
-	
+
 }
 proc printChildren(){localobj sl
 	sl = new SectionList()
@@ -139,19 +140,19 @@ proc printChildren(){localobj sl
 	u+=1
 	}
 	print u
-}	
+}
 proc printparent(){localobj sref
 	sref = new SectionRef()
 	sref.parent
 	print secname()
-}		
+}
 
 
 
 
 proc PrintRecSites(){localobj sref
 	recSites.printnames()
-}	
+}
 stimtime = new Matrix(1,ntimestep)
 readMatrix(timesFile,stimtime)
 pmat = new Matrix(psize,nparams)
@@ -160,7 +161,7 @@ stims = new Matrix(ntraces,ntimestep)
 readCSVMatrix(stimFile,stims)
 forsec "dend" nseg=1
 forsec "apic" nseg=1
-	
+
 //topology()
 most = new SectionList()
 forall most.append()
@@ -184,7 +185,7 @@ st_dend = new IClamp(0.5)
 access root.sec
 
 
- 
+
 finitialize(v_init)
 
 

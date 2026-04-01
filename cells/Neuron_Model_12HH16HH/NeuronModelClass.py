@@ -18,7 +18,7 @@ import gc
 
 
 class NeuronModel:
-    def __init__(self, ais_nav16_fac, ais_nav12_fac, mod_dir='.',
+    def __init__(self, ais_nav16_fac, ais_nav12_fac, mod_dir='../cells/Neuron_Model_12HH16HH/',
 
                  update=None,
                  ##TF If this is true, mechs are updated with update_mech_from_dict. Turn to false if you don't want update ### maybe not working???????
@@ -28,7 +28,7 @@ class NeuronModel:
                  na16name='na16HH_TF2',
                  na16mut_name='na16HH_TF2',
                  na16mechs=['na16', 'na16mut'],
-                 params_folder='./params/',
+                 params_folder='../cells/Neuron_Model_12HH16HH/params/',
 
                  nav12=1,
                  nav16=1,
