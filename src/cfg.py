@@ -38,7 +38,7 @@ cfg.recordStep = 0.1 #step size to save data (e.g. voltage traces, LFP, et.)
 #------------------------------------------------------------------------------
 # Saving
 #------------------------------------------------------------------------------
-cfg.simLabel = 'Na12HH16HH_M1879T' #File output name
+cfg.simLabel = 'Na12HH16HH_WT_Cell' #File output name
 cfg.saveFolder = 'data'
 cfg.saveJson = True
 cfg.savePickle = False

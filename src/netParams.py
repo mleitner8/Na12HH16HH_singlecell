@@ -34,7 +34,7 @@ loadCellParams = True
 saveCellParams = False
 
 if loadCellParams:
-   netParams.loadCellParamsRule(label='PT5B_full', fileName='../cells/Na12HH16HH_TF_Feb18th2026_WeightNorm.json.json')
+   netParams.loadCellParamsRule(label='PT5B_full', fileName='../cells/Na12HH16HH_TF_Feb2026.json')
    #netParams.addCellParamsWeightNorm('PT5B_full', '../conn/PT5B_full_weightNorm.pkl',
                                     # threshold=cfg.weightNormThreshold)
 
@@ -122,8 +122,8 @@ if not loadCellParams:
         for secName in cellRule['secs']: cellRule['secs'][secName]['mechs']['na12']['gbar'] = 0.0 #both for KO
 
     #set weight normalization
-    netParams.addCellParamsWeightNorm('PT5B_full', '../conn/PT5B_full_weightNorm.pkl',
-                                     threshold=cfg.weightNormThreshold)
+   # netParams.addCellParamsWeightNorm('PT5B_full', '../conn/PT5B_full_weightNorm.pkl',
+                                    # threshold=cfg.weightNormThreshold)
 
     # save to json with all the above modifications so easier/faster to load
     if saveCellParams: netParams.saveCellParamsRule(label='PT5B_full', fileName='../cells/Na12HH16HH_TF.json')
